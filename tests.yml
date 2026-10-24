@@ -1,0 +1,24 @@
+name: Тесты
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Расчёт сметы и схема зала
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node --test tests/estimate.test.js
+
+      - name: Сервер заявок
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r server/requirements.txt
+      - run: python -m unittest discover -s server -v

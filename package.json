@@ -1,0 +1,13 @@
+{
+  "name": "smeta-site",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Сайт агентства мероприятий с калькулятором сметы",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "test": "node --test tests/estimate.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

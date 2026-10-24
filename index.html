@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Расчёт сметы — стоимость мероприятия за минуту</title>
+<meta name="description" content="Онлайн-калькулятор сметы корпоратива, конференции, выезда, PR-события или тимбилдинга: вилка цены, разбивка по статьям и схема зала. Точную смету подготовит менеджер.">
+<meta name="theme-color" content="#ECEEF2">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:title" content="Смета мероприятия за минуту">
+<meta property="og:description" content="Формат, гости, услуги — и сразу видно вилку цены, разбивку по статьям и схему зала.">
+<meta property="og:image" content="assets/img/og-cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="assets/css/styles.css">
+<script src="assets/js/config.js" defer></script>
+<script src="assets/js/estimate.js" defer></script>
+<script src="assets/js/plan.js" defer></script>
+<script src="assets/js/app.js" defer></script>
+</head>
+<body id="top">
+
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4ZM22 2 11 13"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2ZM22 7l-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20ZM12 6v6l4 2"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><path d="M11 9h9a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-9a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2ZM5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14M12 5v14"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-briefcase" viewBox="0 0 24 24"><path d="M4 7h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2ZM16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></symbol>
+  <symbol id="i-glass" viewBox="0 0 24 24"><path d="M8 22h8M7 10h10M12 15v7M12 15a5 5 0 0 0 5-5c0-2-.5-4-2-8H9c-1.5 4-2 6-2 8a5 5 0 0 0 5 5Z"/></symbol>
+  <symbol id="i-tent" viewBox="0 0 24 24"><path d="M3.5 21 14 3M20.5 21 10 3M15.5 21 12 15l-3.5 6M2 21h20"/></symbol>
+  <symbol id="i-megaphone" viewBox="0 0 24 24"><path d="m3 11 18-5v12L3 14v-3zM11.6 16.8a3 3 0 1 1-5.8-1.6"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1zM4 22v-7"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><path d="M8 2v4M16 2v4M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2ZM3 10h18M9 16l2 2 4-4"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><path d="M4 8h16a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1ZM12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></symbol>
+  <symbol id="i-video" viewBox="0 0 24 24"><path d="m22 8-6 4 6 4V8ZM4 6h10a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z"/></symbol>
+  <symbol id="i-pen" viewBox="0 0 24 24"><path d="m12 19 7-7 3 3-7 7-3-3zM18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5zM2 2l7.59 7.59M11 9a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"/></symbol>
+</svg>
+
+<a class="skip" href="#calc">Перейти к калькулятору</a>
+
+<header class="hdr" id="hdr">
+  <div class="wrap hdr__in">
+    <a class="logo" href="#top" aria-label="Расчёт сметы — в начало страницы">
+      <svg class="logo__mark" viewBox="0 0 32 32" aria-hidden="true"><circle class="logo__table" cx="16" cy="16" r="7"/><g class="logo__seats"><circle cx="16" cy="4.5" r="2.4"/><circle cx="26" cy="10.25" r="2.4"/><circle cx="26" cy="21.75" r="2.4"/><circle cx="16" cy="27.5" r="2.4"/><circle cx="6" cy="21.75" r="2.4"/><circle cx="6" cy="10.25" r="2.4"/></g></svg>
+      <span>Расчёт сметы</span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Разделы сайта">
+      <a href="#calc">Калькулятор</a>
+      <a href="#examples">Примеры</a>
+      <a href="#process">Как работаем</a>
+      <a href="#faq">Вопросы</a>
+      <a href="#contact">Контакты</a>
+      <a class="nav__cta btn btn--primary" href="#contact">Заказать звонок</a>
+    </nav>
+    <p class="status status--hdr" data-status><i aria-hidden="true"></i><span>Пн–пт 8:00–17:00</span></p>
+    <a class="btn btn--line btn--sm hdr__cta" href="#contact">Заказать звонок</a>
+    <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="nav" aria-label="Меню"><svg class="ico" aria-hidden="true"><use href="#i-menu"/></svg></button>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap hero__grid">
+      <div class="hero__copy">
+        <div class="hero__head">
+          <h1 class="hero__title" id="hero-title">Смета мероприятия за&nbsp;минуту</h1>
+          <div class="dim" aria-hidden="true"><i class="dim__a dim__a--l"></i><span class="dim__label">≈ 1 мин</span><i class="dim__a dim__a--r"></i></div>
+        </div>
+        <p class="hero__lead">Выберите формат, число гостей и услуги — калькулятор сразу покажет вилку цены, разбивку по статьям и схему зала. Точную смету менеджер подготовит после короткого звонка.</p>
+        <div class="hero__cta">
+          <a class="btn btn--primary btn--lg" href="#calc">Рассчитать смету</a>
+          <a class="btn btn--line btn--lg" href="#contact">Заказать звонок</a>
+        </div>
+        <ul class="ticks">
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Без регистрации и звонка</li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Каждая статья расходов отдельно</li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Ссылка и PDF, чтобы показать коллегам</li>
+        </ul>
+      </div>
+
+      <figure class="drawing" aria-labelledby="drawing-cap">
+        <div class="drawing__frame">
+          <div class="drawing__plan" id="hero-plan"></div>
+          <div class="drawing__foot">
+            <p class="drawing__cap" id="drawing-cap">Пример из калькулятора. <span data-hero="caption">Схема зала и смета новогоднего корпоратива.</span></p>
+            <div class="tb">
+              <div class="tb__c tb__c--name"><small>Наименование</small><b data-hero="title">Новогодний корпоратив</b></div>
+              <div class="tb__c"><small>Стадия</small><b>Смета</b></div>
+              <div class="tb__c"><small>Лист</small><b>1</b></div>
+              <div class="tb__c"><small>Гостей</small><b data-hero="guests">80</b></div>
+              <div class="tb__c"><small>Время</small><b data-hero="hours">4 ч</b></div>
+              <div class="tb__c tb__c--total"><small>Итого, ориентир</small><b data-hero="total">≈ 2,3 млн ₽</b><span data-hero="range">2,1–2,6 млн ₽ без НДС</span></div>
+              <div class="tb__c"><small>Уровень</small><b data-hero="level">Комфорт</b></div>
+              <div class="tb__c"><small>Дата</small><b data-hero="date">19.12</b></div>
+            </div>
+          </div>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <section class="services" aria-label="Чем занимается агентство">
+    <ul class="wrap services__list">
+      <li><svg class="ico" aria-hidden="true"><use href="#i-calendar"/></svg><b>Мероприятия под ключ</b><span>Деловые события, корпоративы, выезды и тимбилдинг</span></li>
+      <li><svg class="ico" aria-hidden="true"><use href="#i-gift"/></svg><b>Подарки с логотипом</b><span>Наборы для сотрудников, клиентов и гостей</span></li>
+      <li><svg class="ico" aria-hidden="true"><use href="#i-video"/></svg><b>Видео и фото</b><span>Репортажи, ролики и онлайн-трансляции</span></li>
+      <li><svg class="ico" aria-hidden="true"><use href="#i-pen"/></svg><b>Дизайн</b><span>Фирменный стиль события, приглашения и навигация</span></li>
+    </ul>
+  </section>
+
+  <section class="sec calc" id="calc" aria-labelledby="calc-title">
+    <div class="wrap">
+      <header class="sec-head">
+        <h2 id="calc-title">Калькулятор сметы</h2>
+        <p>Цена пересчитывается после каждого выбора. Ничего не отправляется, пока вы сами этого не захотите.</p>
+      </header>
+
+      <noscript><p class="noscript">Калькулятор работает на JavaScript. Включите его в настройках браузера — или позвоните нам, посчитаем по телефону.</p></noscript>
+
+      <div class="calc__grid">
+        <form class="calc__form" id="calc-form" novalidate>
+
+          <fieldset class="step">
+            <legend class="step__legend"><span class="step__no" aria-hidden="true">1</span><span>Формат</span></legend>
+            <div class="tiles" id="formats"></div>
+            <p class="typical" id="typical-hint" hidden>
+              <span>Для формата «<span id="typical-format"></span>» обычно берут другой набор площадки, питания и услуг.</span>
+              <button class="btn btn--quiet btn--sm" type="button" data-act="typical">Подставить типовой набор</button>
+            </p>
+          </fieldset>
+
+          <fieldset class="step">
+            <legend class="step__legend"><span class="step__no" aria-hidden="true">2</span><span>Гости, время и уровень</span></legend>
+            <div class="scale">
+              <div class="guests">
+                <label class="label" for="guests-num">Количество гостей</label>
+                <div class="guests__row">
+                  <button class="round" type="button" data-act="guests-dec" aria-label="На 5 гостей меньше"><svg class="ico" aria-hidden="true"><use href="#i-minus"/></svg></button>
+                  <input class="guests__num" id="guests-num" type="number" inputmode="numeric" min="10" max="500" step="1" value="50">
+                  <button class="round" type="button" data-act="guests-inc" aria-label="На 5 гостей больше"><svg class="ico" aria-hidden="true"><use href="#i-plus"/></svg></button>
+                  <span class="guests__unit" id="guests-unit">гостей</span>
+                </div>
+                <input class="range" id="guests-range" type="range" min="10" max="500" step="5" value="50" aria-label="Количество гостей">
+                <div class="chips" id="guest-chips" aria-label="Быстрый выбор количества гостей"></div>
+                <p class="hint" id="guests-max-hint" hidden>Больше 500 гостей посчитаем индивидуально — оставьте заявку на звонок.</p>
+              </div>
+              <div class="plan-inline">
+                <div class="plan-box" id="plan-inline"></div>
+                <p class="plan-cap" id="plan-inline-cap"></p>
+              </div>
+              <fieldset class="sub">
+                <legend class="label">Длительность</legend>
+                <div class="chips" id="hours"></div>
+              </fieldset>
+              <div class="date">
+                <label class="label" for="date">Дата <span class="label__opt">если уже известна</span></label>
+                <input class="input input--date" id="date" type="date">
+                <p class="hint" id="date-hint"></p>
+              </div>
+              <fieldset class="sub">
+                <legend class="label">Уровень организации</legend>
+                <div class="opts" id="levels"></div>
+              </fieldset>
+            </div>
+          </fieldset>
+
+          <fieldset class="step">
+            <legend class="step__legend"><span class="step__no" aria-hidden="true">3</span><span>Площадка и питание</span></legend>
+            <div class="pair">
+              <fieldset class="sub">
+                <legend class="label">Площадка</legend>
+                <div class="opts" id="venues"></div>
+              </fieldset>
+              <fieldset class="sub">
+                <legend class="label">Питание</legend>
+                <div class="opts" id="food"></div>
+                <label class="switch" id="drinks-row">
+                  <input type="checkbox" name="drinks" id="drinks">
+                  <span class="switch__track" aria-hidden="true"></span>
+                  <b class="switch__title" id="drinks-title">Алкогольные напитки</b>
+                  <span class="switch__price" id="drinks-price"></span>
+                  <small class="switch__desc" id="drinks-desc"></small>
+                </label>
+              </fieldset>
+            </div>
+          </fieldset>
+
+          <fieldset class="step">
+            <legend class="step__legend"><span class="step__no" aria-hidden="true">4</span><span>Программа и услуги</span></legend>
+            <p class="step__lead">Отметьте нужное — рядом видно, сколько добавит каждая услуга при ваших параметрах.</p>
+            <div class="svc-groups" id="services"></div>
+          </fieldset>
+
+          <section class="step step--budget" aria-labelledby="budget-title">
+            <h3 class="step__legend step__legend--plain" id="budget-title"><span class="step__no" aria-hidden="true">5</span><span>Бюджет <span class="label__opt">необязательно</span></span></h3>
+            <div class="budget">
+              <div class="budget__field">
+                <label class="label" for="budget">Сколько готовы потратить</label>
+                <div class="money">
+                  <input class="input" id="budget" type="text" inputmode="numeric" autocomplete="off" placeholder="Например, 1 500 000">
+                  <span class="money__unit" aria-hidden="true">₽</span>
+                </div>
+              </div>
+              <p class="budget__status" id="budget-status" hidden></p>
+            </div>
+            <div class="tips" id="tips" hidden>
+              <h4 class="tips__title">Как сэкономить</h4>
+              <ul class="tips__list" id="tips-list"></ul>
+            </div>
+          </section>
+        </form>
+
+        <aside class="summary" id="summary" aria-labelledby="summary-title">
+          <div class="sheet">
+            <div class="sheet__frame">
+              <div class="summary__head">
+                <h3 class="summary__title" id="summary-title">Ваша смета</h3>
+                <button class="link-btn" type="button" data-act="reset">Начать заново</button>
+              </div>
+              <p class="summary__params" id="sum-params"></p>
+              <div class="summary__plan">
+                <div class="plan-box" id="plan-main"></div>
+                <p class="plan-cap" id="plan-cap"></p>
+              </div>
+              <div class="total">
+                <p class="total__range"><span id="sum-range"></span></p>
+                <p class="total__sub" id="sum-sub"></p>
+                <p class="total__vat" id="sum-vat"></p>
+              </div>
+              <ul class="lines" id="sum-lines"></ul>
+              <div class="actions">
+                <a class="btn btn--primary btn--block" href="#contact" data-act="send">Отправить смету менеджеру</a>
+                <div class="actions__row">
+                  <button class="btn btn--quiet" type="button" data-act="pdf"><svg class="ico" aria-hidden="true"><use href="#i-download"/></svg>PDF</button>
+                  <button class="btn btn--quiet" type="button" data-act="link"><svg class="ico" aria-hidden="true"><use href="#i-link"/></svg>Ссылка</button>
+                  <button class="btn btn--quiet" type="button" data-act="text"><svg class="ico" aria-hidden="true"><use href="#i-copy"/></svg>Текстом</button>
+                </div>
+              </div>
+              <p class="fine">Расчёт ориентировочный: итог зависит от даты, площадки и подрядчиков. Не является публичной офертой.</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <div class="mbar" id="mbar">
+      <p class="mbar__sum"><small>Ваша смета</small><b id="mbar-sum"></b></p>
+      <a class="btn btn--primary btn--sm" href="#summary">Подробнее</a>
+    </div>
+  </section>
+
+  <section class="sec examples" id="examples" aria-labelledby="examples-title">
+    <div class="wrap">
+      <header class="sec-head">
+        <h2 id="examples-title">Примеры смет</h2>
+        <p>Готовые расчёты для типовых задач. Откройте любой в калькуляторе и подстройте под себя.</p>
+      </header>
+      <ul class="ledger" id="examples-list"></ul>
+    </div>
+  </section>
+
+  <section class="sec levels" id="levels-info" aria-labelledby="levels-title">
+    <div class="wrap">
+      <header class="sec-head">
+        <h2 id="levels-title">Чем отличаются уровни</h2>
+        <p>Уровень меняет подрядчиков, программу и оформление — а вместе с ними и цену. Ориентир на гостя посчитан для корпоратива на 80 человек из примеров.</p>
+      </header>
+      <div class="table-wrap" tabindex="0" role="region" aria-labelledby="levels-title">
+        <table class="cmp">
+          <thead>
+            <tr><td></td><th scope="col">Стандарт</th><th scope="col">Комфорт</th><th scope="col">Премиум</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Подрядчики</th><td data-level="Стандарт">Проверенные, по разумной цене</td><td data-level="Комфорт">Опытные, под задачу и аудиторию</td><td data-level="Премиум">Топовые площадки и артисты</td></tr>
+            <tr><th scope="row">Программа</th><td data-level="Стандарт">Ведущий и музыка по сценарию</td><td data-level="Комфорт">Шоу-программа и интерактив</td><td data-level="Премиум">Авторская концепция и режиссура</td></tr>
+            <tr><th scope="row">Оформление</th><td data-level="Стандарт">Фотозона и базовый декор</td><td data-level="Комфорт">Декор по концепции события</td><td data-level="Премиум">Авторский декор и арт-объекты</td></tr>
+            <tr><th scope="row">Техника</th><td data-level="Стандарт">Звук и свет под формат</td><td data-level="Комфорт">Расширенный комплект и экран</td><td data-level="Премиум">Сценическое шоу и LED-экраны</td></tr>
+            <tr class="cmp__per"><th scope="row">Ориентир на гостя</th><td data-level="Стандарт" data-per-guest="standard">—</td><td data-level="Комфорт" data-per-guest="comfort">—</td><td data-level="Премиум" data-per-guest="premium">—</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec process" id="process" aria-labelledby="process-title">
+    <div class="wrap">
+      <header class="sec-head">
+        <h2 id="process-title">Как мы работаем</h2>
+        <p>От первой сметы до закрывающих документов вас ведёт один менеджер.</p>
+      </header>
+      <ol class="steps">
+        <li><span class="steps__no">1</span><h3>Смета онлайн</h3><p>Соберите параметры в калькуляторе и отправьте заявку — расчёт прикрепится к ней.</p></li>
+        <li><span class="steps__no">2</span><h3>Звонок и бриф</h3><p>Менеджер уточнит цели, дату, площадку и пожелания к программе.</p></li>
+        <li><span class="steps__no">3</span><h3>Концепция и точная смета</h3><p>Предложим идею, программу и смету с ценами конкретных подрядчиков.</p></li>
+        <li><span class="steps__no">4</span><h3>Договор</h3><p>Фиксируем состав работ, сроки и бюджет.</p></li>
+        <li><span class="steps__no">5</span><h3>Подготовка</h3><p>Бронируем площадку и подрядчиков, готовим оформление и тайминг, проводим репетицию.</p></li>
+        <li><span class="steps__no">6</span><h3>Мероприятие и отчёт</h3><p>Ведём событие на площадке. После — фото, видео и закрывающие документы.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec faq" id="faq" aria-labelledby="faq-title">
+    <div class="wrap faq__grid">
+      <header class="sec-head sec-head--side">
+        <h2 id="faq-title">Вопросы</h2>
+        <p>Не нашли ответ — <a href="#contact">закажите звонок</a>, менеджер расскажет подробнее.</p>
+      </header>
+      <div class="qa-list">
+        <details class="qa">
+          <summary>Насколько точен расчёт?</summary>
+          <p>Калькулятор считает по средним рыночным ценам и показывает вилку. Итог зависит от даты, площадки и конкретных артистов, поэтому точную смету менеджер готовит после звонка — с ценами подрядчиков под ваше событие.</p>
+        </details>
+        <details class="qa">
+          <summary>Что входит в «работу агентства»?</summary>
+          <p>Менеджер проекта, поиск и контроль подрядчиков, тайминг и координация в день мероприятия. В калькуляторе это 10–15% от сметы в зависимости от уровня.</p>
+        </details>
+        <details class="qa">
+          <summary>Цены указаны с НДС?</summary>
+          <p>Основная вилка — без НДС. Сумма с НДС 22% показана в смете отдельной строкой.</p>
+        </details>
+        <details class="qa">
+          <summary>Почему в декабре дороже?</summary>
+          <p>Декабрь — пик новогодних корпоративов: площадки, ведущие и артисты заняты, цены растут. Калькулятор добавляет 20% к смете для декабрьской даты. Если перенести праздник на январь, смета станет на 10% ниже.</p>
+        </details>
+        <details class="qa">
+          <summary>За сколько времени нужно обращаться?</summary>
+          <p>Чем раньше, тем больше выбор площадок и подрядчиков. Если до мероприятия меньше двух недель, калькулятор добавит 15% за срочную подготовку — но взяться за проект мы всё равно готовы.</p>
+        </details>
+        <details class="qa">
+          <summary>Можно провести мероприятие в нашем офисе?</summary>
+          <p>Да. Выберите «Своя площадка» — аренда не войдёт в смету, а технику, мебель и оформление подберём под ваше помещение.</p>
+        </details>
+        <details class="qa">
+          <summary>Как уложиться в бюджет?</summary>
+          <p>Укажите бюджет в пятом шаге калькулятора — он покажет, что можно изменить: уровень, дату, длительность, питание или отдельные услуги — и сколько это сэкономит.</p>
+        </details>
+        <details class="qa">
+          <summary>Как показать смету коллегам?</summary>
+          <p>Под сметой есть кнопки «PDF», «Ссылка» и «Текстом». По ссылке откроется тот же расчёт, его можно поменять и отправить дальше.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec contact" id="contact" aria-labelledby="contact-title">
+    <div class="wrap contact__grid">
+      <div class="contact__info">
+        <h2 id="contact-title">Закажите звонок</h2>
+        <p class="contact__lead">Оставьте контакты — менеджер уточнит детали и подготовит точную смету. Расчёт из калькулятора прикрепится к заявке.</p>
+        <ul class="ctc">
+          <li class="ctc__row"><span class="ctc__ico"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg></span><span><small>Телефон</small><span class="ctc__val" data-contact="phone">[+7 (000) 000-00-00]</span></span></li>
+          <li class="ctc__row"><span class="ctc__ico"><svg class="ico" aria-hidden="true"><use href="#i-send"/></svg></span><span><small>Telegram</small><span class="ctc__val" data-contact="telegram">[@telegram_агентства]</span></span></li>
+          <li class="ctc__row"><span class="ctc__ico"><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg></span><span><small>Почта</small><span class="ctc__val" data-contact="email">[почта@агентства.ru]</span></span></li>
+        </ul>
+        <div class="sched">
+          <p class="sched__title"><svg class="ico" aria-hidden="true"><use href="#i-clock"/></svg><span>Когда отвечаем, время <span data-tz>МСК</span></span></p>
+          <dl class="sched__list">
+            <div class="sched__row" data-sched-row="weekday"><dt>Понедельник — пятница</dt><dd data-sched="weekday">8:00 – 17:00</dd></div>
+            <div class="sched__row" data-sched-row="weekend"><dt>Суббота и воскресенье</dt><dd data-sched="weekend">10:00 – 15:00</dd></div>
+          </dl>
+          <p class="status" data-status><i aria-hidden="true"></i><span></span></p>
+        </div>
+      </div>
+
+      <div class="lead-card" id="lead-card">
+        <form class="lead" id="lead-form" novalidate>
+          <label class="attach">
+            <input type="checkbox" id="lead-attach" checked>
+            <span class="attach__box" aria-hidden="true"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span>
+            <span class="attach__text"><b>Приложить мой расчёт</b><small id="lead-attach-sum"></small></span>
+          </label>
+          <div class="row2">
+            <div class="field" data-field="name">
+              <label for="lead-name">Имя</label>
+              <input class="input" id="lead-name" name="name" type="text" autocomplete="name" maxlength="80" placeholder="Как к вам обращаться" aria-describedby="err-name">
+              <p class="err" id="err-name" hidden></p>
+            </div>
+            <div class="field" data-field="phone">
+              <label for="lead-phone">Телефон</label>
+              <input class="input" id="lead-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" aria-describedby="err-phone">
+              <p class="err" id="err-phone" hidden></p>
+            </div>
+          </div>
+          <div class="row2">
+            <div class="field" data-field="email">
+              <label for="lead-email">Почта <span class="label__opt">необязательно</span></label>
+              <input class="input" id="lead-email" name="email" type="email" autocomplete="email" maxlength="120" placeholder="name@company.ru" aria-describedby="err-email">
+              <p class="err" id="err-email" hidden></p>
+            </div>
+            <div class="field" data-field="telegram">
+              <label for="lead-tg">Telegram <span class="label__opt">необязательно</span></label>
+              <input class="input" id="lead-tg" name="telegram" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="64" placeholder="@username" aria-describedby="err-telegram">
+              <p class="err" id="err-telegram" hidden></p>
+            </div>
+          </div>
+          <fieldset class="field">
+            <legend>Как с вами связаться</legend>
+            <div class="chips">
+              <label class="chip"><input type="radio" name="channel" value="phone" checked><span>Звонок</span></label>
+              <label class="chip"><input type="radio" name="channel" value="telegram"><span>Telegram</span></label>
+              <label class="chip"><input type="radio" name="channel" value="email"><span>Почта</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="field">
+            <legend>Когда удобно</legend>
+            <div class="chips">
+              <label class="chip"><input type="radio" name="when" value="asap" checked><span>Как можно скорее</span></label>
+              <label class="chip"><input type="radio" name="when" value="morning"><span>Утром</span></label>
+              <label class="chip"><input type="radio" name="when" value="day"><span>Днём</span></label>
+              <label class="chip"><input type="radio" name="when" value="weekend"><span>В выходной</span></label>
+            </div>
+          </fieldset>
+          <div class="field">
+            <label for="lead-msg">Комментарий <span class="label__opt">необязательно</span></label>
+            <textarea class="input" id="lead-msg" name="message" rows="3" maxlength="1000" placeholder="Площадка, пожелания, вопросы"></textarea>
+          </div>
+          <div class="hp" aria-hidden="true">
+            <label for="lead-website">Сайт компании</label>
+            <input id="lead-website" name="website" type="text" tabindex="-1" autocomplete="off">
+          </div>
+          <div class="field" data-field="consent">
+            <label class="check">
+              <input type="checkbox" id="lead-consent" aria-describedby="err-consent">
+              <span class="check__box" aria-hidden="true"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span>
+              <span>Даю <a href="consent.html" target="_blank" rel="noopener">согласие на обработку персональных данных</a></span>
+            </label>
+            <p class="err" id="err-consent" hidden></p>
+          </div>
+          <button class="btn btn--primary btn--lg btn--block" id="lead-submit" type="submit">Заказать звонок</button>
+          <p class="lead__status" id="lead-status" role="alert" hidden></p>
+          <p class="fine">Как мы храним и используем данные — в <a href="privacy.html" target="_blank" rel="noopener">политике обработки персональных данных</a>.</p>
+        </form>
+
+        <div class="done" id="lead-done" hidden tabindex="-1">
+          <span class="done__ico"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span>
+          <h3 id="lead-done-title">Заявка отправлена</h3>
+          <p id="lead-done-text"></p>
+          <button class="btn btn--line" type="button" data-act="lead-again">Отправить ещё одну заявку</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="ftr">
+  <div class="wrap ftr__in">
+    <div class="ftr__brand">
+      <a class="logo logo--light" href="#top">
+        <svg class="logo__mark" viewBox="0 0 32 32" aria-hidden="true"><circle class="logo__table" cx="16" cy="16" r="7"/><g class="logo__seats"><circle cx="16" cy="4.5" r="2.4"/><circle cx="26" cy="10.25" r="2.4"/><circle cx="26" cy="21.75" r="2.4"/><circle cx="16" cy="27.5" r="2.4"/><circle cx="6" cy="21.75" r="2.4"/><circle cx="6" cy="10.25" r="2.4"/></g></svg>
+        <span>Расчёт сметы</span>
+      </a>
+      <p>Мероприятия под ключ, подарки с логотипом, видео и дизайн.</p>
+    </div>
+    <nav class="ftr__nav" aria-label="Документы">
+      <a href="privacy.html">Политика обработки персональных данных</a>
+      <a href="consent.html">Согласие на обработку персональных данных</a>
+    </nav>
+    <p class="ftr__fine">Расчёты на сайте ориентировочные и не являются публичной офертой. © <span data-year>2026</span> Расчёт сметы</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<p class="sr-only" id="live-total" aria-live="polite"></p>
+<div class="print-sheet" id="print-sheet"></div>
+
+</body>
+</html>

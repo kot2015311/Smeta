@@ -138,5 +138,3 @@ tests/                тесты расчёта
 ## Лицензии
 
 Шрифты [Tektur](https://github.com/hyvyys/Tektur) и [Inter](https://github.com/rsms/inter) распространяются по SIL Open Font License 1.1 — тексты лицензий лежат рядом со шрифтами. Иконки — из набора [Lucide](https://lucide.dev) (лицензия ISC, часть иконок из Feather — MIT), текст лицензии в `assets/icons-LICENSE.txt`.
-#   S m e t a  
- 
